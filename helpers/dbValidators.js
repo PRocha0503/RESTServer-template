@@ -23,8 +23,26 @@ const idExits = async (id) => {
 	}
 };
 
+const emailExits = async (email) => {
+	//Exp Verficiar si el correo existe
+	const existEmail = await User.findOne({ email });
+	if (!existEmail) {
+		throw new Error("EMAIL DOES NOT EXIST");
+	}
+};
+
+const userActive = async (email) => {
+	//Exp Verficiar si el usuario esta activo
+	const user = await User.findOne({ email });
+	if (!user.state) {
+		throw new Error("USER IS NOT ACTIVE");
+	}
+};
+
 module.exports = {
 	isValidRole,
 	isNewEmail,
 	idExits,
+	emailExits,
+	userActive,
 };

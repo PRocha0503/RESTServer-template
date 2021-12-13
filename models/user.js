@@ -33,7 +33,8 @@ const UserSchema = Schema({
 
 //Exp para cuando se conierta aJson quitar datos como contraseña o version
 UserSchema.methods.toJSON = function () {
-	const { __v, password, ...user } = this.toObject();
+	const { __v, password, _id, ...user } = this.toObject();
+	user.uid = _id;
 	return user;
 };
 

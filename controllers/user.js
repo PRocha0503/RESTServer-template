@@ -59,8 +59,8 @@ const usuariosDelete = async (req, res = response) => {
 	const { id } = req.params;
 	//Exp lo borra roralmente de la abse de datos, no se recomienda
 	//const user = await User.findByIdAndDelete(id);
-
 	const user = await User.findByIdAndUpdate(id, { state: false });
+
 	res.json({
 		user,
 	});

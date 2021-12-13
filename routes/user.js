@@ -2,7 +2,8 @@ const { Router } = require("express");
 //Exp middleware para checar condicion
 const { check } = require("express-validator");
 //Exp para revisar errores de todos loc checks
-const { fieldValidation } = require("../middlewares/fieldValidation");
+const { fieldValidation, validateJWT, isRole } = require("../middlewares");
+
 const { isValidRole, isNewEmail, idExits } = require("../helpers/dbValidators");
 const {
 	usuariosGet,
@@ -49,6 +50,9 @@ router.post(
 router.delete(
 	"/:id",
 	[
+		validateJWT,
+		//isAdmin,
+		isRole("ADMIN_ROLE", "SALES_ROLE"),
 		check("id", "Not a valid ID").isMongoId(),
 		check("id").custom(idExits),
 		fieldValidation,
