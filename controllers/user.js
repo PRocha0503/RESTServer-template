@@ -13,7 +13,7 @@ const usuariosGet = async (req, res = response) => {
 	//const { id = 1 } = req.query;
 	const { limit = 5, start = 0 } = req.query;
 
-	//Expo promise. all las ejecuta al mismo tiempo para que sea más rapido
+	//Exp promise. all las ejecuta al mismo tiempo para que sea más rapido
 	const [total, users] = await Promise.all([
 		User.countDocuments({ state: true }),
 		User.find({ state: true }).skip(Number(start)).limit(Number(limit)),
