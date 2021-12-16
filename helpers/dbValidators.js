@@ -39,10 +39,18 @@ const userActive = async (email) => {
 	}
 };
 
+const allowedCollections = async (collection = "", collections = []) => {
+	if (!collections.includes(collection)) {
+		throw new Error("Invalid Collection");
+	}
+	return true;
+};
+
 module.exports = {
 	isValidRole,
 	isNewEmail,
 	idExits,
 	emailExits,
 	userActive,
+	allowedCollections,
 };
