@@ -43,7 +43,7 @@ const uploadImgCloud = async (req, res = response) => {
 			const imgNameArr = existance.img.split("/");
 			const imgName = imgNameArr[imgNameArr.length - 1];
 			const [publicId] = imgName.split(".");
-			await cloudinary.uploader.destroy(publicId);
+			cloudinary.uploader.destroy(publicId);
 		}
 	} catch (err) {}
 	const { secure_url } = await cloudinary.uploader.upload(
